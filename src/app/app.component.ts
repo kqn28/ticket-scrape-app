@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TicketmasterService } from './services/ticketmaster.service';
 import { TicketEvent } from './core/ticket-event';
+import { SearchParameters } from './core/search-parameters';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +22,16 @@ export class AppComponent {
     'Location'
   ];
   public eventList: TicketEvent[];
+  public searchId = '';
+  public searchKeyword = '';
+  public searchPostalCode = '';
 
   constructor(private _tickermasterService: TicketmasterService) {}
 
   public fetchData() {
-    this._tickermasterService.getEvent('').subscribe((data: any) => {
+    const parameters: SearchParameters = new SearchParameters(this.searchId, this.searchKeyword, this.searchPostalCode);
+    this._tickermasterService.getEvent(parameters).subscribe((data: any) => {
       this.eventList = TicketEvent.arrayFromApi(data._embedded.events);
-      console.log(this.eventList);
     });
   }
 }

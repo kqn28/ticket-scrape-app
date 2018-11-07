@@ -47,7 +47,8 @@ export class TicketEvent {
       0,
       0,
       data.url,
-      data._embedded.venues[0].city.name + ', ' + data._embedded.venues[0].state.stateCode
+      data._embedded.venues[0].city.name + ', ' +
+        (data._embedded.venues[0].state !== undefined ? data._embedded.venues[0].state.stateCode : '')
     );
   }
   public static arrayFromApi(dataArray: any[]) {
