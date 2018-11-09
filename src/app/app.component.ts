@@ -13,8 +13,11 @@ export class AppComponent {
   public eventHeaders: string[] = [
     '#',
     'Event Id',
-    'Presale Time',
     'Artist',
+    'Date',
+    'Time',
+    'Timezone',
+    'Presale Time',
     'Venue',
     'Capacity',
     'TM Count',
@@ -28,10 +31,15 @@ export class AppComponent {
 
   constructor(private _tickermasterService: TicketmasterService) {}
 
-  public fetchData() {
+  public submit() {
+    TicketEvent.count = 1;
     const parameters: SearchParameters = new SearchParameters(this.searchId, this.searchKeyword, this.searchPostalCode);
     this._tickermasterService.getEvent(parameters).subscribe((data: any) => {
-      this.eventList = TicketEvent.arrayFromApi(data._embedded.events);
+      if (data._embedded) {
+        this.eventList = TicketEvent.arrayFromApi(data._embedded.events);
+      } else {
+        alert('There is no event found from your query');
+      }
     });
   }
 }

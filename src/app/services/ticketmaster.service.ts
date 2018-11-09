@@ -15,7 +15,7 @@ export class TicketmasterService {
         parameterStrings.push(parameterKey + '=' + parameters[parameterKey]);
       }
     });
-    return this.http.get('https://app.ticketmaster.com/discovery/v2/events.json?' +
+    return this.http.get('https://app.ticketmaster.com/discovery/v2/events.json?size=100&' +
       parameterStrings.join('&') + '&apikey=' + this.apiKey);
   }
 }

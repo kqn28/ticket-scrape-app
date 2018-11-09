@@ -3,6 +3,9 @@ export class TicketEvent {
 
   public tableId: number;
   public eventId: string;
+  public date: string;
+  public startTime: string;
+  public timezone: string;
   public presaleTime: string;
   public name: string;
   public venue: string;
@@ -13,6 +16,9 @@ export class TicketEvent {
 
   constructor(
     eventId: string,
+    date: string,
+    startTime: string,
+    timezone: string,
     presaleTime: string,
     name: string,
     venue: string,
@@ -23,6 +29,9 @@ export class TicketEvent {
   ) {
     this.tableId = TicketEvent.count++;
     this.eventId = eventId;
+    this.date = date;
+    this.startTime = startTime;
+    this.timezone = timezone;
     this.presaleTime = presaleTime;
     this.name = name;
     this.venue = venue;
@@ -34,6 +43,7 @@ export class TicketEvent {
 
   // Item needs to be filled later: cpacity, tMCount
   public static fromApi(data: any) {
+    console.log(data)
     let earliestPresaleDate = '';
     if (data.presales) {
       earliestPresaleDate =
@@ -41,6 +51,9 @@ export class TicketEvent {
     }
     return new TicketEvent(
       data.id,
+      data.dates.start.localDate,
+      data.dates.start.localTime,
+      data.dates.timezone,
       earliestPresaleDate,
       data.name,
       data._embedded.venues[0].name,
