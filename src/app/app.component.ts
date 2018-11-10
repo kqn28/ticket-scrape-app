@@ -28,12 +28,30 @@ export class AppComponent {
   public searchId = '';
   public searchKeyword = '';
   public searchPostalCode = '';
+  public searchStartDateTime = '';
+  public searchEndDateTime = '';
+  public searchOnsaleStartDateTime = '';
+  public searchOnsaleEndDateTime = '';
+  public searchCity = '';
+  public searchStateCode = '';
+  public searchCountryCode = '';
 
   constructor(private _tickermasterService: TicketmasterService) {}
 
   public submit() {
     TicketEvent.count = 1;
-    const parameters: SearchParameters = new SearchParameters(this.searchId, this.searchKeyword, this.searchPostalCode);
+    const parameters: SearchParameters = new SearchParameters(
+      this.searchId,
+      this.searchKeyword,
+      this.searchPostalCode,
+      this.searchStartDateTime,
+      this.searchEndDateTime,
+      this.searchOnsaleStartDateTime,
+      this.searchOnsaleEndDateTime,
+      this.searchCity,
+      this.searchStateCode,
+      this.searchCountryCode
+    );
     this._tickermasterService.getEvent(parameters).subscribe((data: any) => {
       if (data._embedded) {
         this.eventList = TicketEvent.arrayFromApi(data._embedded.events);

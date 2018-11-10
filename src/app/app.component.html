@@ -7,19 +7,36 @@
 
 <div class="main-panel">
   <div>
-    Search Id:<br> 
-    <input [(ngModel)]="searchId" /><br>
+    <span>Id:</span>
+    <span class="indent-left">Start Time Before:</span><br>
+    <input [(ngModel)]="searchId" />
+    <input class="indent-left" [(ngModel)]="searchStartDateTime" />
   </div>
   <div>
-    Search Keyword:<br>
-    <input [(ngModel)]="searchKeyword" /><br>
+    <span>Keyword:</span>
+    <span class="indent-left">Start Time After:</span><br>
+    <input [(ngModel)]="searchKeyword" />
+    <input class="indent-left" [(ngModel)]="searchEndDateTime" />
   </div>
   <div>
-    Search Postal Code:<br>
-    <input [(ngModel)]="searchPostalCode" /><br>
+    <span>Postal Code:</span>
+    <span class="indent-left">Onsale Start Time Before:</span><br>
+    <input [(ngModel)]="searchPostalCode" />
+    <input class="indent-left" [(ngModel)]="searchOnsaleStartDateTime" />
   </div>
-  <button (click)="submit()">Submit</button><br>
-  
+  <div>
+    <span>City:</span>
+    <span class="indent-left">Onsale Start Time After:</span><br>
+    <input [(ngModel)]="searchCity" />
+    <input class="indent-left" [(ngModel)]="searchOnsaleEndDateTime" />
+  </div>
+  <div>
+    <span>State Code:</span>
+    <span class="indent-left">Country Code:</span><br>
+    <input [(ngModel)]="searchStateCode" />
+    <input class="indent-left" [(ngModel)]="searchCountryCode" />
+  </div>
+  <button (click)="submit()" class="submit-button">Submit</button>
   <table class="table">
     <tr>
       <th *ngFor="let eventHeader of eventHeaders">{{ eventHeader }}</th>

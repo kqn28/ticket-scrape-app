@@ -41,9 +41,8 @@ export class TicketEvent {
     this.location = location;
   }
 
-  // Item needs to be filled later: cpacity, tMCount
+  // Item needs to be filled later: capacity, tMCount
   public static fromApi(data: any) {
-    console.log(data)
     let earliestPresaleDate = '';
     if (data.presales) {
       earliestPresaleDate =
